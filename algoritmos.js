@@ -1,35 +1,56 @@
-const quick = (numeros) =>{
-    if(numeros.length <=1){
-        return numeros
+const margesort = (arr) => {
+    if (arr.length <= 1) {
+        return arr
     }
+    let medio = Math.floor(arr.length / 2)
+    let left = arr.slice(0 ,medio)
+    let rigth = arr.slice(medio)
 
-    let derecha = [ ]
-    let izquierda = [ ]
-    var pivote = numeros[0]
+    return merge(margesort(left), margesort(rigth))
+}
 
-    for(i = 1; i < numeros.length; i++){
-        if(numeros[i] < pivote){
-            izquierda.push(numeros[i])
-        }else{
-            derecha.push(numeros[i])
+const  merge = ( left, rigth) => {
+    let indexL = 0
+    let indexD = 0
+    let result = []
+    while (indexL < left.length && indexD < rigth.length) {
+        if (left[indexL] <  rigth[indexD]) {
+            result.push(left[indexL])
+            indexL++
+        } else {
+            result.push(rigth[indexD])
+            indexD++
         }
     }
-    let listaordeanda = [...quick(izquierda) , pivote , ...quick(derecha)]
-    return listaordeanda
+    return [...result, ...left.slice(indexL), ...rigth.slice(indexD)]
 }
-const buerosdesor = [9, 3, 7, 1, 5, 8, 2, 4, 6]
+var  numeros = []
+    for (let i = 0; i < 10 ; i++) {
+        var numerosaletorios = Math.floor(Math.random()*10)
+        numeros.push(numerosaletorios)         
+    }    
+ console.log(numeros);
 
+ const result = margesort(numeros)
+ console.log(result);
 
-console.log(quick(buerosdesor));
-
-const busquedabini = (lista, valorbuscado) => {
-    for(i =0; i < lista.length; i++ ){
-        if (lista[i] === valorbuscado){
-        return i
-
+ const busquedaBinaria = (busqeuda,arr)=> {
+        let inicio = 0
+        let fin = arr.length
+        while (inicio < fin) {
+            let medio = Math.floor((inicio + fin) / 2)
+            if (arr[medio] === busqeuda) {
+                return medio
+            }else if (arr[medio] < busqeuda) {
+                inicio = medio + 1
+            } else {
+                fin = medio - 1
+            }
         }
-    }
-    return -1
-}
-const nombres = ["Ana", "Juan", "María", "Carlos", "Luisa", "Pedro", "Sofía", "Miguel", "Laura", "José"];
-console.log(busquedabini(nombres, 'Juan'));
+        return -1
+ }
+
+const numeroabuscar = 7
+const buscado = busquedaBinaria(numeroabuscar,result)
+console.log(buscado);
+
