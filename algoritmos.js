@@ -1,3 +1,4 @@
+// ordenamiento con merge
 const margesort = (arr) => {
     if (arr.length <= 1) {
         return arr
@@ -24,6 +25,8 @@ const  merge = ( left, rigth) => {
     }
     return [...result, ...left.slice(indexL), ...rigth.slice(indexD)]
 }
+
+//generar array de nuemors aliatorios
 var  numeros = []
     for (let i = 0; i < 10 ; i++) {
         var numerosaletorios = Math.floor(Math.random()*10)
@@ -31,8 +34,10 @@ var  numeros = []
     }    
  console.log(numeros);
 
- const result = margesort(numeros)
  console.log(result);
+
+
+ //busqueda binaria 
 
  const busquedaBinaria = (busqeuda,arr)=> {
         let inicio = 0
@@ -54,3 +59,14 @@ const numeroabuscar = 7
 const buscado = busquedaBinaria(numeroabuscar,result)
 console.log(buscado);
 
+//insertsort
+
+const insert = ( arr )=>{
+    for (let i = 0; i < arr.length; i++) {
+        const element = array[i];
+        const j = i - 1
+        while (j >= 0 && arr[j] > element) {
+            
+        }
+    }
+}
